@@ -1,0 +1,50 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>sport</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="utils/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript" src="utils/utils.js"></script>
+		<script type="text/javascript" src="utils/shap.js"></script>
+	</head>
+
+	<body bgcolor="#CCFFCC">
+		<canvas id="canvas" width="800" height="600"></canvas>
+		<script type="text/javascript" src="utils/animation_mode.js"></script>
+		<script>
+			window.onload = function() {
+				canvas = document.getElementById('canvas');
+				context = canvas.getContext('2d');
+				ball = new Ball();
+				fns = new Array();
+				fns.push(AM.updownInit);
+				fns.push(AM.leftrightInit);
+				fns.push(AM.waveInit);
+				fns.push(AM.pulseInit);
+				fns.push(AM.randomMoveInit);
+				fns.push(AM.circleInit);
+				fns.push(AM.ovalInit);
+				currentIndex = 0;
+				fn = fns[currentIndex](canvas, ball);
+				(function drawFrame() {
+					window.requestAnimationFrame(drawFrame, canvas);
+					context.clearRect(0, 0, canvas.width, canvas.height);
+					fn(canvas, context, ball);
+				}());
+				setInterval(changeMode, 15000);
+
+				function changeMode() {
+					currentIndex += 1;
+					if (currentIndex >= fns.length) {
+						currentIndex = 0;
+					}
+					fn = fns[currentIndex](canvas, ball);
+					console.log(ball.scaleX + " " + ball.scaleY);
+				}
+			}
+		</script>
+	</body>
+
+</html>
