@@ -25,6 +25,18 @@ body {
     margin-top: 50px;
 }
 
+.menu {
+    margin-top: 10px;
+    margin-right: 10px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 100px;
+    height: 200px;
+    background-color: #bbbbbb;
+    border: 2px;
+}
+
 header {
     padding-bottom: 10px;
 }
