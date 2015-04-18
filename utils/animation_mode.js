@@ -98,7 +98,7 @@ AM.circleInit = function(canvas, ball) {
 	ball.y = canvas.height / 5;
 	ball.angle = 0;
 	ball.radius = 3;
-	ball.speed = 20;
+	ball.speed = 30;
 	ball.inc = 0.08;
 	ball.scaleX = ball.scaleY = 1;
 
