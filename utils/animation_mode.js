@@ -81,7 +81,7 @@ AM.randomMoveInit = function(canvas, ball) {
 	ball.xspeed = 0.07;
 	ball.yspeed = 0.11;
 	ball.scaleX = ball.scaleY = 1;
-	ball.radius = 10;
+	ball.radius = 5;
 	return AM.randomMove;
 }
 AM.randomMove = function(canvas, context, ball) {
@@ -118,7 +118,7 @@ AM.circle = function(canvas, context, ball) {
 
 AM.ovalInit = function(canvas, ball) {
 	ball.scaleX = ball.scaleY = 1;
-	ball.radius = 10;
+	ball.radius = 5;
 	ball.angle = 0;
 	ball.radiusX = 450;
 	ball.radiusY = 250;
