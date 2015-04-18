@@ -32,7 +32,11 @@
 	<script>
 		var ball = new Ball();
 		window.onload = function() {
+			var h = screen.height - 240;
+			var w = screen.width - 20;
 			canvas = document.getElementById('canvas');
+			canvas.setAttribute("width",w);
+			canvas.setAttribute("height",h);
 		        context = canvas.getContext('2d');
 		        
 		        fns = new Array();
