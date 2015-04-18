@@ -94,26 +94,25 @@ AM.randomMove = function(canvas, context, ball) {
 }
 
 AM.circleInit = function(canvas, ball) {
-	ball.x = canvas.width / 5;
+	ball.x = canvas.width / 8;
 	ball.y = canvas.height / 5;
 	ball.angle = 0;
 	ball.radius = 3;
-	ball.speed = 8;
-	ball.inc = 0.15;
+	ball.speed = 20;
+	ball.inc = 0.08;
 	ball.scaleX = ball.scaleY = 1;
 
 	return AM.circle;
 }
 AM.circle = function(canvas, context, ball) {
 	context.clearRect(0, 0, canvas.width, canvas.height);
-	if (ball.radius > 20 || ball.radius < 3) {
+	if (ball.x > canvas.width * 7 / 8 || ball.x < canvas.width / 8) {
 		ball.inc *= -1;
 	}
 	ball.radius += ball.inc;
 
 	ball.x += ball.inc * ball.speed * 5 * ball.speedMulti;
-	ball.y += ball.inc * ball.speed * 2 * ball.speedMulti; 
-	ball.angle += ball.speed;
+	ball.y += ball.inc * ball.speed * 2 * ball.speedMulti;
 	ball.draw(context);
 }
 

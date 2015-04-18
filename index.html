@@ -22,7 +22,7 @@
 	    <input id="resetR" type="button" value="r=" />
 	    <input id="smaller" type="button" value="r-" />
 	    <br />
-	    <audio controls="controls" autoplay="autoplay" loop="loop">
+	    <audio controls="controls" >
 		  <source src="music/Stay Here Forever.mp3" type="audio/mp3" />
 		</audio>
 	</div>
@@ -32,7 +32,7 @@
 	<script>
 		var ball = new Ball();
 		window.onload = function() {
-			var h = screen.height - 240;
+			var h = screen.height - 100;
 			var w = screen.width - 20;
 			canvas = document.getElementById('canvas');
 			canvas.setAttribute("width",w);
@@ -40,10 +40,14 @@
 		        context = canvas.getContext('2d');
 		        
 		        fns = new Array();
+		        fns.push(AM.circleInit);
 		        fns.push(AM.updownInit);
+		        fns.push(AM.circleInit);
 		        fns.push(AM.leftrightInit);
+		        fns.push(AM.circleInit);
 		        fns.push(AM.waveInit);
-		        fns.push(AM.pulseInit);
+		        fns.push(AM.circleInit);
+		        //fns.push(AM.pulseInit);
 		        fns.push(AM.randomMoveInit);
 		        fns.push(AM.circleInit);
 		        fns.push(AM.ovalInit);
