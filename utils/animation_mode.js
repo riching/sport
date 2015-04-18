@@ -9,7 +9,7 @@ AM.updownInit = function(canvas, ball) {
 }
 AM.updown = function(canvas, context, ball) {
 	context.clearRect(0, 0, canvas.width, canvas.height);
-	ball.y = canvas.height / 2 + Math.sin(ball.angle) * canvas.height / 2;
+	ball.y = canvas.height / 2 + Math.sin(ball.angle) * canvas.height / 3;
 	if (ball.angle >= 360) {
 		ball.angle = 0;
 	}
@@ -26,7 +26,7 @@ AM.leftrightInit = function(canvas, ball) {
 }
 AM.leftright = function(canvas, context, ball) {
 	context.clearRect(0, 0, canvas.width, canvas.height);
-	ball.x = canvas.width / 2 + Math.sin(ball.angle) * canvas.width / 2;
+	ball.x = canvas.width / 2 + Math.sin(ball.angle) * canvas.width / 3;
 	if (ball.angle >= 360) {
 		ball.angle = 0;
 	}
