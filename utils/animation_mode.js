@@ -13,7 +13,7 @@ AM.updown = function(canvas, context, ball) {
 	if (ball.angle >= 360) {
 		ball.angle = 0;
 	}
-	ball.angle = ball.angle + 0.1;
+	ball.angle = ball.angle + 0.1 * ball.speedMulti;
 	ball.draw(context);
 }
 AM.leftrightInit = function(canvas, ball) {
@@ -30,7 +30,7 @@ AM.leftright = function(canvas, context, ball) {
 	if (ball.angle >= 360) {
 		ball.angle = 0;
 	}
-	ball.angle = ball.angle + 0.1;
+	ball.angle = ball.angle + 0.1 * ball.speedMulti;
 	ball.draw(context);
 }
 AM.waveInit = function(canvas, ball) {
@@ -50,9 +50,9 @@ AM.wave = function(canvas, context, ball) {
 	if (ball.x < 0) {
 		ball.xspeed = ball.xspeed * -1;
 	}
-	ball.x += ball.xspeed;
-	ball.y = canvas.height / 2 + Math.sin(ball.angle) * canvas.height / 4;
-	ball.angle += ball.yspeed;
+	ball.x += ball.xspeed * ball.speedMulti;
+	ball.y = canvas.height / 2 + Math.sin(ball.angle) * canvas.height / 3;
+	ball.angle += ball.yspeed * ball.speedMulti;
 	ball.draw(context);
 }
 AM.pulseInit = function(canvas, ball) {
@@ -70,7 +70,7 @@ AM.pulse = function(canvas, context, ball) {
 	ball.y = canvas.height / 2;
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	ball.scaleX = ball.scaleY = ball.centerScale + Math.sin(ball.angle) * 10;
-	ball.angle += ball.speed;
+	ball.angle += ball.speed * ball.speedMulti;
 	ball.draw(context);
 }
 
@@ -88,28 +88,31 @@ AM.randomMove = function(canvas, context, ball) {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	ball.x = canvas.width / 2 + Math.sin(ball.angleX) * ball.range;
 	ball.y = canvas.height / 2 + Math.sin(ball.angleY) * ball.range;
-	ball.angleX += ball.xspeed;
-	ball.angleY += ball.yspeed;
+	ball.angleX += ball.xspeed * ball.speedMulti;
+	ball.angleY += ball.yspeed * ball.speedMulti;
 	ball.draw(context);
 }
 
 AM.circleInit = function(canvas, ball) {
+	ball.x = canvas.width / 5;
+	ball.y = canvas.height / 5;
 	ball.angle = 0;
-	ball.radius = 10;
-	ball.speed = 0.2;
-	ball.inc = 1;
+	ball.radius = 3;
+	ball.speed = 8;
+	ball.inc = 0.15;
 	ball.scaleX = ball.scaleY = 1;
+
 	return AM.circle;
 }
 AM.circle = function(canvas, context, ball) {
 	context.clearRect(0, 0, canvas.width, canvas.height);
-	if (ball.radius > 250 || ball.radius < 10) {
+	if (ball.radius > 20 || ball.radius < 3) {
 		ball.inc *= -1;
 	}
 	ball.radius += ball.inc;
 
-	ball.x = canvas.width / 2 + Math.cos(ball.angle) * ball.radius;
-	ball.y = canvas.height / 2 + Math.sin(ball.angle) * ball.radius;
+	ball.x += ball.inc * ball.speed * 5 * ball.speedMulti;
+	ball.y += ball.inc * ball.speed * 2 * ball.speedMulti; 
 	ball.angle += ball.speed;
 	ball.draw(context);
 }
@@ -118,8 +121,8 @@ AM.ovalInit = function(canvas, ball) {
 	ball.scaleX = ball.scaleY = 1;
 	ball.radius = 10;
 	ball.angle = 0;
-	ball.radiusX = 350;
-	ball.radiusY = 150;
+	ball.radiusX = 450;
+	ball.radiusY = 250;
 	ball.speed = 0.05;
 
 	return AM.oval;
@@ -128,6 +131,6 @@ AM.oval = function(canvas, context, ball) {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	ball.x = canvas.width / 2 + Math.cos(ball.angle) * ball.radiusX;
 	ball.y = canvas.height / 2 + Math.sin(ball.angle) * ball.radiusY;
-	ball.angle += ball.speed;
+	ball.angle += ball.speed * ball.speedMulti;
 	ball.draw(context);
 }

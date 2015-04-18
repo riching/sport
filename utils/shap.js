@@ -1,14 +1,15 @@
 function Ball(radius, color) {
 	if (radius === undefined) {
-		radius = 10;
+		radius = 5;
 	}
 	if (color === undefined) {
-		color = "#0f0";
+		color = "#000";
 	}
 	this.x = 0;
 	this.y = 0;
 	this.radius = radius;
 	this.color = utils.parseColor(color);
+	this.speedMulti = 1;
 };
 
 Ball.prototype.draw = function(context) {
