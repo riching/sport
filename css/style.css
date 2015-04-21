@@ -13,15 +13,15 @@ section {
  */
 
 body {
-    color: #383838;
     text-align: center;
-    background-image: url(../img/afternoon.jpg);
+    //background-image: url(../img/afternoon.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
+    background-color: #D3EBD3;
 }
 
 #canvas {
-   // background-color: #ccffcc;
+    //background-color: #D3EBD3;
     margin-top:10px;
 }
 
