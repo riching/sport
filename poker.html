@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="utils/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="utils/poker-game.js"></script>
+    <script type="text/javascript" src="utils/jquery.sortable.min.js"></script>
+    <style>
+        div {
+            margin: 30px;
+        }
+
+        span {
+            margin-left: 20px;
+        }
+
+        .pokers {
+            overflow: hidden;
+        }
+
+        li {
+            display: inline-block;
+            margin: 10px;
+            float: left;
+            text-align: center;
+        }
+
+        li.sortable-placeholder {
+            border: 1px dashed #CCC;
+            background: none;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div>
+        <h1>记忆扑克牌</h1>
+            <span>规则说明，在下面的输入框中输入数量X，系统从52张（去掉大小王）牌中随机抽取X张扑克牌，
+                点击开始后进行显示，点击方向键（Down）进行翻页，直到看完所有牌或者时间到，然后点击开始排列将X张扑克牌按照出现的顺序进行排列，完成后点击完成按钮</span>
+    </div>
+    <div>
+        <label for="poker_num">扑克牌数量（10-52）</label> <input type="text" value="20" id="poker_num"
+                                                           onchange="checkPokerNumber()"/>
+        <span><input type="button" value="选择扑克牌" onclick="randomSelPoker()"/></span>
+        <span><input type="button" class="rem_op" value="开始记忆" id="start_memory" onclick="remeberPoker()"/></span>
+        <span><input type="button" class="rem_op" value="下一张" id="next_poker"/></span>
+        <span><input type="button" class="check_op" value="检验结果" id="check_result_bt" onclick="checkResult()"></span>
+    </div>
+
+    <div>
+        <canvas id="canvas" width="1000" height="400"></canvas>
+    </div>
+    <div>
+        <ul class="pokers sortable"></ul>
+    </div>
+</div>
+</body>
+</html>
