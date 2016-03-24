@@ -3,12 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>HTML5小动画游戏</title>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script>
+        $(function () {
+            $("head").load("common/header.html")
+        });
+    </script>
 </head>
 <body>
-    <ul>
-        <li><a href="eyeball.html">眼球训练-追逐小球</a></li>
-        <li><a href="poker.html">记忆训练-扑克牌</a> </li>
-    </ul>
+<div class="container">
+    <div class="header">
 
+        <div class="row">
+            <div class="col-md-5">
+                <!-- Logo -->
+                <div class="logo">
+                    <h1><a href="#">HTML5 SMALL GAME</a></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-offset-4">
+                <h3><a href="eyeball.html">眼球训练-追逐小球</a></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-4">
+                <h3><a href="poker.html">记忆训练-扑克牌</a></h3>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

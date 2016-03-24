@@ -5,10 +5,14 @@
 var POKER_MIN = 5;
 var POKER_MAX = 52;
 var POKER_DEFAULT = 20;
-var REMBER_TIMEOUT = 10;//最长记忆时间100秒
+
+var REM_TIME_MIN = 5;
+var REM_TIME_MAX = 100;
+var REMBER_TIMEOUT_DEFAULT = 40;//最长记忆时间100秒
+var remeber_timeout = REMBER_TIMEOUT_DEFAULT;//需要的记忆时间（秒）
 
 var poker_number = POKER_DEFAULT; //需要记忆的扑克牌数量
-var remeber_timeout = REMBER_TIMEOUT; //需要的记忆时间（秒）
+
 
 var sel_pokers = new Array(); //随机选择的扑克牌集合
 var sel_pokers_images = new Array();
@@ -29,6 +33,19 @@ window.onload = function () {
     ctx = canvas.getContext("2d");
     $('.rem_op').hide();
     $('.check_op').hide();
+    $('.show-poker-row').hide();
+
+    var poker_num = localStorage.getItem('poker_num');
+    if (poker_num) {
+        $("#poker_num").val(poker_num);
+        poker_number=poker_num;
+    }
+
+    var rem_timeout = localStorage.getItem('remeber_timeout');
+    if (rem_timeout) {
+        $('#remeber_timeout').val(rem_timeout);
+        remeber_timeout = rem_timeout;
+    }
 }
 
 function checkPokerNumber() {
@@ -39,6 +56,19 @@ function checkPokerNumber() {
         poker_number = POKER_DEFAULT;
         return false;
     }
+    localStorage.setItem('poker_num', poker_number);
+    return true;
+}
+
+function checkSelTime() {
+    remeber_timeout = $("#remeber_timeout").val();
+    if (remeber_timeout < REM_TIME_MIN || remeber_timeout > REM_TIME_MAX || Math.floor(remeber_timeout) != remeber_timeout) {
+        alert("扑克牌数量必须在5-100之间的整数");
+        $("#remeber_timeout").val(REMBER_TIMEOUT_DEFAULT);
+        remeber_timeout = REMBER_TIMEOUT_DEFAULT;
+        return false;
+    }
+    localStorage.setItem('remeber_timeout', remeber_timeout);
     return true;
 }
 
@@ -59,6 +89,7 @@ function randomSelPoker() {
         sel_pokers.push(poker.pop());
     }
     canMem = true;
+    $('.sel_op').hide();
     $('.rem_op').show();
 }
 
@@ -123,12 +154,12 @@ var drawCanvasImage = function (ctx, img_index, x, y) {
 var cost = 0;
 function showLeftTime() {
     cost++;
-    if (cost > REMBER_TIMEOUT) {
+    if (cost > remeber_timeout) {
         finishRemember();
         return;
     }
     ctx.clearRect(canvas.width - 100, 0, 100, 30);
-    ctx.fillText("剩余时间：" + (REMBER_TIMEOUT - cost), canvas.width - 100, 30);
+    ctx.fillText("剩余时间：" + (remeber_timeout - cost), canvas.width - 100, 30);
 }
 /**
  * 完成记忆：浏览完扑克牌的顺序 或者 超时，执行该方法
@@ -141,6 +172,7 @@ function finishRemember() {
     $('#canvas').hide();
     $('.check_op').show();
     $('.rem_op').hide();
+    $('.show-poker-row').show();
 
     //show_sel_pokers
     for (var i = 0; i < sel_pokers.length; i++) {
@@ -159,7 +191,7 @@ function showAllSelPoker() {
     for (var i = 0; i < show_sel_pokers.length; i++) {
         var element_id = 'poker_' + show_sel_pokers[i];
         var element_src = "img/pokers/veryhuo.com_pkp_" + show_sel_pokers[i] + ".jpg";
-        $('.pokers').append('<li id=' + element_id + '><img src="' + element_src + '" </li>');
+        $('.pokers').append('<li id=' + element_id + '><img class="img-thumbnail" src="' + element_src + '" </li>');
     }
     $('.sortable').sortable();
 }

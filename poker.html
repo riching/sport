@@ -3,57 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <script type="text/javascript" src="utils/jquery-1.9.1.min.js"></script>
+
+    <link href="/sport/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="utils/poker-game.js"></script>
-    <script type="text/javascript" src="utils/jquery.sortable.min.js"></script>
+    <script type="text/javascript" src="js/jquery.sortable.min.js"></script>
+    <script type="text/javascript" src="utils/fullscreen.js"></script>
+    <script type="text/javascript" src="/sport/js/bootstrap.min.js"></script>
     <style>
-        div {
-            margin: 30px;
-        }
-
-        span {
-            margin-left: 20px;
-        }
-
-        .pokers {
-            overflow: hidden;
-        }
-
-        li {
-            display: inline-block;
-            margin: 10px;
-            float: left;
-            text-align: center;
-        }
-
-        li.sortable-placeholder {
+        .pokers.li.sortable-placeholder {
             border: 1px dashed #CCC;
             background: none;
         }
+
     </style>
 </head>
 <body>
-<div>
-    <div>
-        <h1>记忆扑克牌</h1>
-            <span>规则说明，在下面的输入框中输入数量X，系统从52张（去掉大小王）牌中随机抽取X张扑克牌，
-                点击开始后进行显示，点击方向键（Down）进行翻页，直到看完所有牌或者时间到，然后点击开始排列将X张扑克牌按照出现的顺序进行排列，完成后点击完成按钮</span>
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2><a href="#">HTML5 SMALL GAME：记忆扑克牌</a></h2>
+            </div>
+        </div>
     </div>
-    <div>
-        <label for="poker_num">扑克牌数量（10-52）</label> <input type="text" value="20" id="poker_num"
-                                                           onchange="checkPokerNumber()"/>
-        <span><input type="button" value="选择扑克牌" onclick="randomSelPoker()"/></span>
-        <span><input type="button" class="rem_op" value="开始记忆" id="start_memory" onclick="remeberPoker()"/></span>
-        <span><input type="button" class="rem_op" value="下一张" id="next_poker"/></span>
-        <span><input type="button" class="check_op" value="检验结果" id="check_result_bt" onclick="checkResult()"></span>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-off-1 col-md-8">
+                <h3>规则</h3>
+                <ol>
+                    <li>选择要记忆的数量，系统从52张牌中随机选取</li>
+                    <li>选择记忆需要的时间</li>
+                    <li>点击开始，系统随机选取扑克牌</li>
+                    <li>点击开始记忆，页面上开始顺序出现扑克牌，点击下一张或者方向键（下）记忆下一张</li>
+                    <li>看到最后一张或者超过预定时间，扑克牌停止显示</li>
+                    <li>点击【检验结果】查看是否正确</li>
+                </ol>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-2">
+                扑克牌数量（10-52)
+            </div>
+            <div class="col-md-3">
+                <input type="text" value="20" id="poker_num" onchange="checkPokerNumber()"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                需要的时间（秒）
+            </div>
+            <div class="col-md-3">
+                <input type="text" value="20" id="remeber_timeout" onchange="checkSelTime()"/>
+            </div>
+        </div>
+        <br/>
+
+        <div class="row">
+            <div class="col-md-2">
+                <input type="button" class="sel_op btn btn-primary btn-xs" value="选择扑克牌"
+                       onclick="randomSelPoker()"/>
+            </div>
+            <div class="col-md-2">
+                <input type="button" class="rem_op btn btn-primary btn-xs" value="开始记忆" id="start_memory"
+                       onclick="remeberPoker()"/>
+            </div>
+            <div class="col-md-2">
+                <input type="button" class="rem_op btn btn-primary btn-xs" value="下一张" id="next_poker"/>
+            </div>
+            <div class="col-md-2">
+                <input type="button" class="check_op btn btn-primary btn-xs" value="检验结果" id="check_result_bt"
+                       onclick="checkResult()">
+            </div>
+            <br/>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-off-1">
+                <canvas id="canvas" width="1000" height="400"></canvas>
+            </div>
+        </div>
+        <div class="row show-poker-row">
+            <div class="col-md-10 col-md-off-1">
+                <div class="content-box-header">
+                    <div class="panel-title">拖动扑克修正为正确的顺序</div>
+                </div>
+                <div class="content-box-large box-with-header">
+                    <ul class="pokers sortable list-inline"></ul>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div>
-        <canvas id="canvas" width="1000" height="400"></canvas>
-    </div>
-    <div>
-        <ul class="pokers sortable"></ul>
-    </div>
+
+</div>
 </div>
 </body>
 </html>

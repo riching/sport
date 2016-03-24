@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="css/colorpicker.css" />
 
-    <script type="text/javascript" src="utils/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="utils/utils.js"></script>
     <script type="text/javascript" src="utils/shap.js"></script>
     <script type="text/javascript" src="utils/colorpicker.js"></script>
+    <script type="text/javascript" src="utils/fullscreen.js"></script>
     <script type="text/javascript">
         function changebg() {
             // alert(document.getElementById("color_sel").value);
@@ -46,6 +47,9 @@
         <input id="bigger" type="button" value="增加"/>
         <input id="resetR" type="button" value="重置"/>
         <input id="smaller" type="button" value="减小"/>
+    </section>
+    <section>
+        <input type="button" value="全屏" class="fullscreen-button-box"/>
     </section>
     <audio controls="controls" >
       <source src="music/Stay Here Forever.mp3" type="audio/mp3" />
