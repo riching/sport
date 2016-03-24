@@ -41,7 +41,7 @@ window.onload = function () {
         poker_number=poker_num;
     }
 
-    var rem_timeout = localStorage.getItem('remeber_timeout');
+    var rem_timeout = localStorage.getItem('rem_timeout');
     if (rem_timeout) {
         $('#remeber_timeout').val(rem_timeout);
         remeber_timeout = rem_timeout;
@@ -68,7 +68,7 @@ function checkSelTime() {
         remeber_timeout = REMBER_TIMEOUT_DEFAULT;
         return false;
     }
-    localStorage.setItem('remeber_timeout', remeber_timeout);
+    localStorage.setItem('rem_timeout', remeber_timeout);
     return true;
 }
 

@@ -12,6 +12,7 @@
     <script type="text/javascript" src="js/jquery.sortable.min.js"></script>
     <script type="text/javascript" src="utils/fullscreen.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="utils/fullscreen.js"></script>
     <style>
         .pokers.li.sortable-placeholder {
             border: 1px dashed #CCC;
@@ -61,7 +62,7 @@
                 需要的时间（秒）
             </div>
             <div class="col-md-3">
-                <input type="text" value="20" id="remeber_timeout" onchange="checkSelTime()"/>
+                <input type="text" value="40" id="remeber_timeout" onchange="checkSelTime()"/>
             </div>
         </div>
         <br/>
@@ -93,7 +94,11 @@
             <div class="col-md-10 col-md-off-1">
                 <div class="content-box-header">
                     <div class="panel-title">拖动扑克修正为正确的顺序</div>
+                    <div class="panel-options">
+                        <input type="button" class="check_op btn btn-primary btn-xs fullscreen-button-box" value="全屏"/>
+                    </div>
                 </div>
+
                 <div class="content-box-large box-with-header">
                     <ul class="pokers sortable list-inline"></ul>
                 </div>
