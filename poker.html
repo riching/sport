@@ -12,7 +12,6 @@
     <script type="text/javascript" src="js/jquery.sortable.min.js"></script>
     <script type="text/javascript" src="utils/fullscreen.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="utils/fullscreen.js"></script>
     <style>
         .pokers.li.sortable-placeholder {
             border: 1px dashed #CCC;
@@ -22,8 +21,8 @@
     </style>
 </head>
 <body>
-<div class="header">
-    <div class="container">
+<div class="container">
+    <div class="page-header">
         <div class="row">
             <div class="col-md-8">
                 <h2><a href="#">HTML5 SMALL GAME：记忆扑克牌</a></h2>
@@ -35,7 +34,7 @@
 <div class="page-content">
     <div class="container">
         <div class="row">
-            <div class="col-off-1 col-md-8">
+            <div class="col-md-10">
                 <h3>规则</h3>
                 <ol>
                     <li>选择要记忆的数量，系统从52张牌中随机选取</li>
@@ -90,12 +89,12 @@
                 <canvas id="canvas" width="1000" height="400"></canvas>
             </div>
         </div>
-        <div class="row show-poker-row">
+        <div class="row show-poker-row fullscreen-box">
             <div class="col-md-10 col-md-off-1">
                 <div class="content-box-header">
                     <div class="panel-title">拖动扑克修正为正确的顺序</div>
                     <div class="panel-options">
-                        <input type="button" class="check_op btn btn-primary btn-xs fullscreen-button-box" value="全屏"/>
+                        <input type="button" class="check_op btn btn-primary btn-xs fullscreen-button" value="全屏"/>
                     </div>
                 </div>
 

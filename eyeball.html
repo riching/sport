@@ -1,64 +1,140 @@
-﻿﻿<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
 
 <head>
     <meta charset="utf-8"/>
     <title>眼球运动动画</title>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="css/colorpicker.css" />
+    <link rel="stylesheet" href="css/bootstrap.colorpickersliders.min.css"/>
 
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="utils/utils.js"></script>
     <script type="text/javascript" src="utils/shap.js"></script>
     <script type="text/javascript" src="utils/colorpicker.js"></script>
     <script type="text/javascript" src="utils/fullscreen.js"></script>
-    <script type="text/javascript">
-        function changebg() {
-            // alert(document.getElementById("color_sel").value);
-
-        }
-    </script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.colorpickersliders.min.js"></script>
+    <script type="text/javascript" src="js/tinycolor.js"></script>
 </head>
 
 <body>
-<div class="menu">
-    <section>
-        <div class="preview"></div>
-        <div class="colorpicker" style="display:none">
-            <canvas id="picker" var="4" width="300" height="300"></canvas>
-            <div class="controls">
-                <div><label>R</label> <input type="text" id="rVal"/></div>
-                <div><label>G</label> <input type="text" id="gVal"/></div>
-                <div><label>B</label> <input type="text" id="bVal"/></div>
-                <div><label>RGB</label> <input type="text" id="rgbVal"/></div>
-                <div><label>HEX</label> <input type="text" id="hexVal"/></div>
+<div class="container">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-10">
+                <h2><a href="#">HTML5 SMALL GAME：失心疯小球</a></h2>
+            </div>
+            <div class="panel-options">
+                <h3>
+                    <a href="#setting-modal" data-toggle="modal" aria-labelledby="setting-modal-title">
+                        <i class="glyphicon glyphicon-cog"></i>
+                    </a>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <a href="#" class="fullscreen-button">
+                        <i class="glyphicon glyphicon-fullscreen"></i>
+                    </a>
+                </h3>
             </div>
         </div>
-    </section>
-    <section>
-        速度:
-        <input id="add" type="button" value="增大"/>
-        <input id="reset" type="button" value="重置"/>
-        <input id="dec" type="button" value="减小"/>
-    </section>
-    <section>
-        半径:
-        <input id="bigger" type="button" value="增加"/>
-        <input id="resetR" type="button" value="重置"/>
-        <input id="smaller" type="button" value="减小"/>
-    </section>
-    <section>
-        <input type="button" value="全屏" class="fullscreen-button-box"/>
-    </section>
-    <audio controls="controls" >
-      <source src="music/Stay Here Forever.mp3" type="audio/mp3" />
-    </audio>
+    </div>
 </div>
-<h1>一只名叫失心疯的球</h1>
-<canvas id="canvas" width="800" height="600"></canvas>
+<div class="page-content">
+    <div class="row">
+        <div class="col-md-12">
+            <canvas id="canvas" width="800" height="600" class="fullscreen-box"></canvas>
+        </div>
+    </div>
+
+    <div class="menu">
+        <section>
+            <div class="preview"></div>
+            <div class="colorpicker" style="display:none">
+                <canvas id="picker" var="4" width="300" height="300"></canvas>
+                <div class="controls">
+                    <div><label>R</label> <input type="text" id="rVal"/></div>
+                    <div><label>G</label> <input type="text" id="gVal"/></div>
+                    <div><label>B</label> <input type="text" id="bVal"/></div>
+                    <div><label>RGB</label> <input type="text" id="rgbVal"/></div>
+                    <div><label>HEX</label> <input type="text" id="hexVal"/></div>
+                </div>
+            </div>
+        </section>
+        <audio controls="controls">
+            <source src="music/Stay Here Forever.mp3" type="audio/mp3"/>
+        </audio>
+    </div>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="setting-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="setting-modal-title">修改设置</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-2">速度:</div>
+                        <div class="col-md-1"><span id="speed_val"></span></div>
+                        <div class="col-md-1">
+                            <a href="#" id="add" class="setting-speed">
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </a>
+                        </div>
+                        <div class="col-md-1">
+                            <a href="#" id="dec" class="setting-speed">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </a>
+                        </div>
+                        <div class="col-md-1">
+                            <a href="#" id="reset" class="setting-speed">
+                                <span class="glyphicon glyphicon-refresh"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-md-2">半径:</div>
+                        <div class="col-md-1"><span id="radius_val"></span></div>
+                        <div class="col-md-1">
+                            <a href="#" id="bigger" class="setting-radius">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                        <div class="col-md-1">
+                            <a href="#" id="smaller" class="setting-radius">
+                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                        <div class="col-md-1">
+                            <a href="#" id="resetR" class="setting-radius">
+                                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <br/><br/>
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div id="hsvflat"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript" src="utils/animation_mode.js"></script>
 <script>
+
     var ball = new Ball();
     window.onload = function () {
         var h = screen.height - 240;
@@ -67,6 +143,7 @@
         canvas.setAttribute("width", w);
         canvas.setAttribute("height", h);
         context = canvas.getContext('2d');
+        canvas.backgroup
 
         fns = new Array();
         fns.push(AM.circleInit);
@@ -128,6 +205,27 @@
                 ball.radius -= ball.radius * 0.2;
             }
     );
+
+    $('#speed_val').html(ball.speedMulti.toFixed(2));
+    $('#radius_val').html(ball.radius.toFixed(2));
+    $('.setting-speed').click(function () {
+        $('#speed_val').html(ball.speedMulti.toFixed(2));
+    });
+    $('.setting-radius').click(function () {
+        $('#radius_val').html(ball.radius.toFixed(2));
+    });
+    $("#hsvflat").ColorPickerSliders({
+        color: "rgb(199, 237, 204)",
+        flat: true,
+        sliders: false,
+        swatches: false,
+        hsvpanel: true,
+        onchange: function (container, color) {
+            $('body').css("background-color", color.tiny.toRgbString());
+            canvas.style.backgroundColor = color.tiny.toRgbString();
+        }
+    });
+    $('#canvas').css('background-color','#C7EDCC');
 </script>
 </body>
 </html>
