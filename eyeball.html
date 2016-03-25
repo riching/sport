@@ -13,7 +13,6 @@
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="utils/utils.js"></script>
     <script type="text/javascript" src="utils/shap.js"></script>
-    <script type="text/javascript" src="utils/colorpicker.js"></script>
     <script type="text/javascript" src="utils/fullscreen.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.colorpickersliders.min.js"></script>
@@ -47,26 +46,6 @@
             <canvas id="canvas" width="800" height="600" class="fullscreen-box"></canvas>
         </div>
     </div>
-
-    <div class="menu">
-        <section>
-            <div class="preview"></div>
-            <div class="colorpicker" style="display:none">
-                <canvas id="picker" var="4" width="300" height="300"></canvas>
-                <div class="controls">
-                    <div><label>R</label> <input type="text" id="rVal"/></div>
-                    <div><label>G</label> <input type="text" id="gVal"/></div>
-                    <div><label>B</label> <input type="text" id="bVal"/></div>
-                    <div><label>RGB</label> <input type="text" id="rgbVal"/></div>
-                    <div><label>HEX</label> <input type="text" id="hexVal"/></div>
-                </div>
-            </div>
-        </section>
-        <audio controls="controls">
-            <source src="music/Stay Here Forever.mp3" type="audio/mp3"/>
-        </audio>
-    </div>
-
 </div>
 <!-- Modal -->
 <div class="modal fade" id="setting-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -127,6 +106,11 @@
                             <div id="hsvflat"></div>
                         </div>
                     </div>
+                    <div class="row">
+                        <audio controls="controls">
+                            <source src="music/Stay Here Forever.mp3" type="audio/mp3"/>
+                        </audio>
+                    </div>
                 </div>
             </div>
         </div>
@@ -137,7 +121,7 @@
 
     var ball = new Ball();
     window.onload = function () {
-        var h = screen.height - 240;
+        var h = screen.height - 300;
         var w = screen.width - 50;
         canvas = document.getElementById('canvas');
         canvas.setAttribute("width", w);
@@ -225,7 +209,43 @@
             canvas.style.backgroundColor = color.tiny.toRgbString();
         }
     });
-    $('#canvas').css('background-color','#C7EDCC');
+    $('#canvas').css('background-color', '#C7EDCC');
+    document.addEventListener("webkitfullscreenchange", function () {
+        console.log('fullscreenchange');
+    });
+    $('#canvas').bind("webkitfullscreenchange", function () {
+        console.log('fullscreenchange2');
+    });
+    document.getElementById('canvas').addEventListener("webkitfullscreenchange", function () {
+        console.log('fullscreenchange3');
+    });
+
+
+    //================== 全屏相关的逻辑 start====================
+    var FShandler = function () {
+        if (document.fullscreenElement ||
+                document.webkitFullscreenElement ||
+                document.mozFullScreenElement ||
+                document.msFullscreenElement) {
+            canvas = document.getElementById('canvas');
+            canvas.width = screen.width;
+            canvas.height = screen.height;
+        } else {
+            var h = screen.height - 300;
+            var w = screen.width - 50;
+            canvas = document.getElementById('canvas');
+            canvas.setAttribute("width", w);
+            canvas.setAttribute("height", h);
+        }
+    }
+
+    document.addEventListener("fullscreenchange", FShandler);
+    document.addEventListener("webkitfullscreenchange", FShandler);
+    document.addEventListener("mozfullscreenchange", FShandler);
+    document.addEventListener("MSFullscreenChange", FShandler);
+
+    //================== 全屏相关的逻辑 end ====================
+
 </script>
 </body>
 </html>
