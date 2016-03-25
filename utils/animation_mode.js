@@ -9,7 +9,7 @@ AM.updownInit = function(canvas, ball) {
 }
 AM.updown = function(canvas, context, ball) {
 	context.clearRect(0, 0, canvas.width, canvas.height);
-	ball.y = canvas.height / 2 + Math.sin(ball.angle) * canvas.height / 3;
+	ball.y = canvas.height / 2 + Math.sin(ball.angle) * canvas.height / 2;
 	if (ball.angle >= 360) {
 		ball.angle = 0;
 	}
@@ -26,7 +26,7 @@ AM.leftrightInit = function(canvas, ball) {
 }
 AM.leftright = function(canvas, context, ball) {
 	context.clearRect(0, 0, canvas.width, canvas.height);
-	ball.x = canvas.width / 2 + Math.sin(ball.angle) * canvas.width / 3;
+	ball.x = canvas.width / 2 + Math.sin(ball.angle) * canvas.width / 2;
 	if (ball.angle >= 360) {
 		ball.angle = 0;
 	}
@@ -51,7 +51,7 @@ AM.wave = function(canvas, context, ball) {
 		ball.xspeed = ball.xspeed * -1;
 	}
 	ball.x += ball.xspeed * ball.speedMulti;
-	ball.y = canvas.height / 2 + Math.sin(ball.angle) * canvas.height / 3;
+	ball.y = canvas.height / 2 + Math.sin(ball.angle) * canvas.height / 2;
 	ball.angle += ball.yspeed * ball.speedMulti;
 	ball.draw(context);
 }

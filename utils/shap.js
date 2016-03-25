@@ -9,7 +9,7 @@ function Ball(radius, color) {
 	this.y = 0;
 	this.radius = radius;
 	this.color = utils.parseColor(color);
-	this.speedMulti = 1;
+	this.speedMulti = 0.5;
 };
 
 Ball.prototype.draw = function(context) {
